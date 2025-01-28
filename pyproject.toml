@@ -1,0 +1,18 @@
+[project]
+name = "luabr"
+version = "0.1.0"
+description = "Este é um projeto feito por um brasileiro, Arthur Miranda, com o intuito de ajudar a comunidade brasileira de Lua/LuaU, unindo todos em um blog como o tabnews."
+authors = [
+    {name = "arthur",email = "arthur.o.f.miranda2011@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard] (>=0.115.7,<0.116.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
