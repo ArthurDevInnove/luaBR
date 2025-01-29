@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Response
 from ..infra.db.session import get_session
-from ..services.user import insert_user
-from ..schemas.user import UserSchema
+from ..services.user import insert_user, authenticate_user
+from ..schemas.user import UserCreate, UserLogin
 from sqlalchemy.orm import Session
 
 router = APIRouter(
@@ -10,9 +10,15 @@ router = APIRouter(
 )
 
 @router.post('/register')
-async def register_user(user: UserSchema, session: Session = Depends(get_session)):
+async def register_user(user: UserCreate, session: Session = Depends(get_session)):
     insert_user(user, session)
 
-    return UserSchema(
+    return UserCreate(
         **user.__dict__
     )
+
+@router.post('/login')
+async def login(response: Response, user_login: UserLogin, session: Session = Depends(get_session)):
+    user = authenticate_user(user_login, session, response)
+
+    return user

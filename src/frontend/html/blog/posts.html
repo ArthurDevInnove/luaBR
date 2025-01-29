@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts - LuaBR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="../static/moon-solid-24 (2).png"
+      type="image/x-icon"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      class="w-full bg-gray-900 text-white shadow-lg fixed top-0 left-0 z-50"
+    >
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-6">
+            <i class="bx bx-moon text-2xl text-blue-500"></i>
+            <span class="text-xl font-semibold">
+              lua<span class="text-blue-500">BR</span>
+            </span>
+
+            <nav class="hidden md:flex items-center gap-6 ml-6">
+              <a href="#" class="hover:text-blue-400 transition-colors"
+                >Página Principal</a
+              >
+              <a href="#" class="hover:text-blue-400 transition-colors"
+                >Relevantes</a
+              >
+            </nav>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="Pesquisar"
+                class="bg-gray-800 rounded-full py-2 px-4 w-48 focus:w-64 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+              />
+            </div>
+
+            <button
+              class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition-colors font-medium"
+            >
+              Cadastrar
+            </button>
+            <button
+              class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-colors font-medium"
+            >
+              Registrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-24 pb-12 px-4 md:px-8">
+      <!-- Padding top para compensar o header fixo -->
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Post 1 -->
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">João Silva</h3>
+              <span class="text-gray-400 text-sm">2 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Acabei de testar a nova atualização da plataforma e estou
+            impressionado com as melhorias de performance! 🚀 Alguém mais já
+            experimentou?
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 245
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 45
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Maria Oliveira</h3>
+              <span class="text-gray-400 text-sm">5 horas atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
+            com alguns problemas de organização... 🤔
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 182
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 32
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div
+          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div>
+              <h3 class="font-semibold text-white">Carlos Souza</h3>
+              <span class="text-gray-400 text-sm">1 dia atrás</span>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Compartilhando meu último projeto: Um sistema de gerenciamento
+            completo usando as novas APIs! 👨💻
+            <br />
+            <span class="text-blue-400 cursor-pointer">#novoprojeto #dev</span>
+          </p>
+          <div class="flex items-center gap-4 text-gray-400">
+            <button class="hover:text-blue-400 transition-colors">
+              <i class="bx bx-like"></i> 356
+            </button>
+            <button class="hover:text-green-400 transition-colors">
+              <i class="bx bx-comment"></i> 67
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <i class="bx bx-share"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-6">
+      <div class="container mx-auto px-4 text-center">
+        <p class="mb-2">&copy; 2025 LuaBR. Todos os direitos reservados.</p>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="hover:text-blue-400 transition-colors"
+            >Termos de Serviço</a
+          >
+          <a href="#" class="hover:text-blue-400 transition-colors"
+            >Política de Privacidade</a
+          >
+          <a href="#" class="hover:text-blue-400 transition-colors">Contato</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

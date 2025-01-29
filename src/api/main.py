@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routers.auth import router
 from .infra.db.base import Base
 from .infra.db.database import engine
-from .models.user import UserModel
+from .models.user import UserModel  # noqa: F401
 
 app = FastAPI()
 app.include_router(router)
