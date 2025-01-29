@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - LuaBR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../static/moon-solid-24 (2).png" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+        }
+
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header class="w-full bg-gray-900 text-white shadow-lg fixed top-0 left-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-6">
+                    <i class='bx bx-moon text-2xl text-blue-500'></i>
+                    <span class="text-xl font-semibold">
+                        lua<span class="text-blue-500">BR</span>
+                    </span>
+                    
+                    <nav class="hidden md:flex items-center gap-6 ml-6">
+                        <a href="#" class="hover:text-blue-400 transition-colors">Página Principal</a>
+                        <a href="#" class="hover:text-blue-400 transition-colors">Relevantes</a>
+                    </nav>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <input type="text" 
+                               placeholder="Pesquisar" 
+                               class="bg-gray-800 rounded-full py-2 px-4 w-48 focus:w-64 transition-all 
+                                      focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400">
+                    </div>
+                    
+                    <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full 
+                                 transition-colors font-medium">
+                        Cadastrar
+                    </button>
+                    <button class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full 
+                                 transition-colors font-medium">
+                        Registrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="h-screen flex items-center justify-center">
+        <div class="p-8 rounded-xl shadow-xl w-96">
+            <h1 class="text-blue-400 text-4xl text-left font-semibold text-center mb-6">Cadastro</h1>
+            <form action="" method="post" class="space-y-6">
+                <div>
+                    <label for="public_name" class="block text-white text-sm font-semibold">Nome de usuário</label>
+                    <input id="public_name" type="text" class="bg-gray-700 w-full px-4 py-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400" placeholder="nomepublico">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-white text-sm font-semibold">E-mail</label>
+                    <input id="email" type="email" class="bg-gray-700 w-full px-4 py-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400" placeholder="seuemail@dominio.com">
+                </div>
+
+                <div>
+                    <label for="password" class="block text-white text-sm font-semibold">Senha</label>
+                    <input id="password" type="password" class="bg-gray-700 w-full px-4 py-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400" placeholder="Sua senha">
+                </div>
+
+                <div>
+                    <button id="submitBtn" type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg font-semibold text-white transition-colors flex items-center justify-center">
+                        <span id="btnText">Criar Conta</span>
+                        <i id="loadingIcon" class="bx bx-loader-alt text-white ml-2 hidden spin"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            const url = 'http://localhost:8000/auth/register';
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const loadingIcon = document.getElementById('loadingIcon');
+
+            form.addEventListener('submit', async function(event){
+                event.preventDefault();
+
+                let public_name = document.getElementById('public_name').value;
+                let email = document.getElementById('email').value;
+                let password = document.getElementById('password').value;
+
+                const data = {
+                    'name': public_name,
+                    'password': password,
+                    'email': email
+                };
+                
+                const jsonData = JSON.stringify(data);
+                const headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+
+                submitBtn.disabled = true;
+                loadingIcon.classList.remove('hidden');
+
+                let response = await fetch(url, {
+                    method: 'POST', 
+                    headers: headers,
+                    body: jsonData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Algo deu errado...');
+                }
+
+                const result = await response.json();
+
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                loadingIcon.classList.add('hidden');
+
+                return result;
+            });
+        });
+    </script>
+
+    <footer class="bg-gray-900 text-white py-6 mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">&copy; 2025 LuaBR. Todos os direitos reservados.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="hover:text-blue-400 transition-colors">Termos de Serviço</a>
+                <a href="#" class="hover:text-blue-400 transition-colors">Política de Privacidade</a>
+                <a href="#" class="hover:text-blue-400 transition-colors">Contato</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
