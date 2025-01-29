@@ -1,4 +1,6 @@
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
 from .database import engine
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+def get_session():
+    with Session(engine) as session:
+        yield session
