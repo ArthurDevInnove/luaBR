@@ -14,7 +14,9 @@ def setup_app():
 )
     Base.metadata.create_all(bind=engine)
 
-    from .routers.auth import router
-    app.include_router(router)
+    from .routers.auth import auth_router
+    from .routers.posts import posts_router
+    app.include_router(auth_router)
+    app.include_router(posts_router)
 
     return app
