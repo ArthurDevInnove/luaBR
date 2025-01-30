@@ -1,23 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers.auth import router
 from .infra.db.base import Base
 from .infra.db.database import engine
-from .models.user import UserModel  # noqa: F401
 
-app = FastAPI()
-app.include_router(router)
-
-app.add_middleware(
+def setup_app():
+    app = FastAPI()
+    app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Permite todas as origens
+    allow_origins=["*"], 
     allow_credentials=True,
-    allow_methods=["*"],  # Permite todos os métodos (GET, POST, etc)
-    allow_headers=["*"],  # Permite todos os cabeçalhos
+    allow_methods=["*"], 
+    allow_headers=["*"],
 )
+    Base.metadata.create_all(bind=engine)
 
-Base.metadata.create_all(bind=engine)
+    from .routers.auth import router
+    app.include_router(router)
 
-@app.get('/')
-async def read_root():
-    return 'App is executing'
+    return app
