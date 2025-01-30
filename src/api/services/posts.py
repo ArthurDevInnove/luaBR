@@ -63,8 +63,8 @@ def edit_post(post_id: int, new_post: PostsEdit, session: Session):
         session.commit()
         return db_post
     
-    except SQLAlchemyError as e:
-        print(e)
+    except SQLAlchemyError:
+        session.rollback()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail='Houve um erro interno no servidor.'
@@ -72,7 +72,23 @@ def edit_post(post_id: int, new_post: PostsEdit, session: Session):
     
     finally:
         session.close()
+
+def delete_post(post_id: int, session: Session):
+    try:
+        post = get_post_by_id(post_id, session)
+        session.delete(post)
+        session.commit()
+        
+    except SQLAlchemyError:
+        session.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail='Houve um erro interno no servidor.'
+        )
     
+    finally:
+        session.close()
+
 
 def list_posts(session: Session):
     try:
@@ -88,6 +104,3 @@ def list_posts(session: Session):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail='Houve um erro interno no servidor.'
         )
-    
-    finally:
-        session.close()
