@@ -34,3 +34,16 @@ def create_post(post: PostsCreate, request: Request, session: Session) -> PostsM
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail='Houve um erro interno no servidor.'
         )
+
+def list_posts(session: Session):
+    try:
+        posts = session.query(PostsModel).all()
+        if not posts:
+            return []
+        
+        return posts
+    except SQLAlchemyError:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail='Houve um erro interno no servidor.'
+        )
