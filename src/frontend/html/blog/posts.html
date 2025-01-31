@@ -71,327 +71,16 @@
       </div>
     </header>
 
+    <div
+      id="errorCard"
+      class="fixed top-20 right-5 max-w-xs p-4 bg-red-500 text-white rounded-lg opacity-0 shadow-lg transform translate-x-full transition duration-500 ease-in-out"
+    >
+      <p class="font-semibold">Erro!</p>
+      <p id="errorMessage">An error occurred while processing your request.</p>
+    </div>
+
     <main class="pt-24 pb-12 px-4 md:px-8">
-      <!-- Padding top para compensar o header fixo -->
-      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Post 1 -->
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">João Silva</h3>
-              <span class="text-gray-400 text-sm">2 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Acabei de testar a nova atualização da plataforma e estou
-            impressionado com as melhorias de performance! 🚀 Alguém mais já
-            experimentou?
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 245
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 45
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Post 2 -->
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Maria Oliveira</h3>
-              <span class="text-gray-400 text-sm">5 horas atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Alguém tem dicas para otimizar projetos grandes na plataforma? Estou
-            com alguns problemas de organização... 🤔
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 182
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 32
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Post 3 -->
-        <div
-          class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <div>
-              <h3 class="font-semibold text-white">Carlos Souza</h3>
-              <span class="text-gray-400 text-sm">1 dia atrás</span>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">
-            Compartilhando meu último projeto: Um sistema de gerenciamento
-            completo usando as novas APIs! 👨💻
-            <br />
-            <span class="text-blue-400 cursor-pointer">#novoprojeto #dev</span>
-          </p>
-          <div class="flex items-center gap-4 text-gray-400">
-            <button class="hover:text-blue-400 transition-colors">
-              <i class="bx bx-like"></i> 356
-            </button>
-            <button class="hover:text-green-400 transition-colors">
-              <i class="bx bx-comment"></i> 67
-            </button>
-            <button class="hover:text-purple-400 transition-colors">
-              <i class="bx bx-share"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      <div id="posts-container"></div>
     </main>
 
     <footer class="bg-gray-900 text-white py-6">
@@ -409,4 +98,90 @@
       </div>
     </footer>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const url = "http://localhost:8000/posts/show";
+      let error_card = document.querySelector("#errorCard");
+      let error_message = document.querySelector("#errorMessage");
+
+      async function get_posts() {
+        let response = await fetch(url, {
+          method: "GET",
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (!response.ok) {
+          console.log(result);
+          error_message.textContent = result.detail || "Erro desconhecido!";
+
+          error_card.classList.remove("opacity-0", "translate-x-full");
+          error_card.classList.add("opacity-100", "translate-x-0");
+
+          setTimeout(() => {
+            error_card.classList.remove("opacity-100", "translate-x-0");
+            error_card.classList.add("opacity-0", "translate-x-full");
+          }, 3000);
+
+          return;
+        }
+
+        const postsContainer = document.getElementById("posts-container");
+        let html = "";
+
+        let date = new Date();
+        let hours = date.getHours();
+
+        function getTimeSincePost(postHourString) {
+          const now = new Date();
+          const [hours, minutes, seconds] = postHourString.split(":");
+          const postDate = new Date();
+          postDate.setHours(hours, minutes, seconds);
+
+          if (postDate > now) {
+            postDate.setDate(postDate.getDate() - 1);
+          }
+
+          const diffMs = now - postDate;
+          const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+          const diffMinutes = Math.floor(
+            (diffMs % (1000 * 60 * 60)) / (1000 * 60)
+          );
+
+          return { diffHours, diffMinutes };
+        }
+
+        for (let post = 0; post < result.length; post++) {
+          const { diffHours, diffMinutes } = getTimeSincePost(
+            result[post].post_hour
+          );
+          html += `
+            <div class="bg-gray-800 rounded-md px-3 py-3 shadow-md hover:shadow-lg transition-shadow mb-3">
+            <div class="flex flex-col gap-2">
+                <!-- Título principal -->
+                <h3 class="font-semibold text-white text-base mb-0.5">
+                    ${post + 1}. ${result[post].title}
+                </h3>
+                
+                <!-- Metadados compactos -->
+                <div class="flex items-center gap-2 text-gray-500 text-xs flex-wrap">
+                    <span class="text-gray-500">·</span>
+                    <span>3 comentários</span>
+                    <span class="text-gray-500">·</span>
+                    <span>${result[post].author}</span>
+                    <span class="text-gray-500">·</span>
+                    <span>${diffHours} horas atrás</span>
+                </div>
+            </div>
+        </div>
+          `;
+        }
+
+        postsContainer.innerHTML = html;
+      }
+
+      get_posts();
+    });
+  </script>
 </html>

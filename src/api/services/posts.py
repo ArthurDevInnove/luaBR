@@ -5,6 +5,7 @@ from ..models.posts import PostsModel
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from ..utils.security.token_manager import decode_token
+from ..utils.check_owner import check_owner
 
 def get_post_by_id(id: int, session: Session) -> PostsModel:
     try:
@@ -54,9 +55,10 @@ def create_post(post: PostsCreate, request: Request, session: Session) -> PostsM
     finally:
         session.close()
     
-def edit_post(post_id: int, new_post: PostsEdit, session: Session):
+def edit_post(post_id: int, new_post: PostsEdit, session: Session, user_id: int):
     try:
         db_post = get_post_by_id(post_id, session)
+        check_owner(db_post.author, user_id)
         db_post.title = new_post.title
         db_post.content = new_post.content
 
@@ -73,12 +75,14 @@ def edit_post(post_id: int, new_post: PostsEdit, session: Session):
     finally:
         session.close()
 
-def delete_post(post_id: int, session: Session):
+def delete_post(post_id: int, session: Session, user_id: int):
     try:
         post = get_post_by_id(post_id, session)
+        check_owner(post.author, user_id)
+
         session.delete(post)
         session.commit()
-        
+
     except SQLAlchemyError:
         session.rollback()
         raise HTTPException(
