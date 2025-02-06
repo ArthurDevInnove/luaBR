@@ -1,10 +1,10 @@
 from pydantic import BaseModel
-from datetime import datetime, time
+from datetime import datetime
 
 class PostsCreate(BaseModel):
     title: str
     content: str
-    hour: time = datetime.now().time().replace(microsecond=1)
+    hour: datetime = datetime.now()
 
 class PostsEdit(BaseModel):
     title: str

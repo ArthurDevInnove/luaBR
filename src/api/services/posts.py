@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from ..utils.security.token_manager import decode_token
 from ..utils.check_owner import check_owner
+from .user import get_by_id
 
 def get_post_by_id(id: int, session: Session) -> PostsModel:
     try:
@@ -31,12 +32,16 @@ def create_post(post: PostsCreate, request: Request, session: Session) -> PostsM
                 detail='O token de autentificação do usuário não foi encontrado.'
             )
         
+        
         user_id = decode_token(str(token_cookie))
+        author = get_by_id(user_id, session)
+
         db_post = PostsModel(
             title=post.title,
             content=post.content,
             post_hour=post.hour,
-            author=user_id
+            author=user_id,
+            author_name=author.name
         )
 
         session.add(db_post)
@@ -96,7 +101,7 @@ def delete_post(post_id: int, session: Session, user_id: int):
 
 def list_posts(session: Session):
     try:
-        posts = session.query(PostsModel).all()
+        posts = session.query(PostsModel).all() 
         if not posts:
             return []
         

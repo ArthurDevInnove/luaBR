@@ -81,76 +81,40 @@
 
     <main class="pt-28 pb-12 container mx-auto px-4 max-w-3xl">
       <!-- Cabeçalho do Post -->
-      <div class="bg-gray-800 rounded-xl p-6 mb-6 shadow-lg">
-        <div class="flex items-center gap-4 mb-6">
-          <div>
-            <h2 class="font-semibold text-lg text-white">João Silva</h2>
-            <p class="text-gray-400 text-sm">Publicado há</p>
+      <div class="bg-gray-800 rounded-xl p-6 mb-6 shadow-lg relative">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-4">
+            <div>
+              <h2 class="font-semibold text-lg text-white" id="author">João Silva</h2>
+              <p class="text-gray-400 text-sm" id="time">Publicado há</p>
+            </div>
+          </div>
+
+          <div class="relative">
+            <button id="postMenuButton" class="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-gray-700">
+              <i class="bx bx-dots-vertical-rounded text-xl"></i>
+            </button>
+            
+            <div id="postMenu" class="hidden absolute right-0 mt-2 w-48 bg-gray-700 rounded-lg shadow-lg py-2 z-50">
+              <button class="w-full px-4 py-2 text-left hover:bg-gray-600 text-white">
+                <i class="bx bx-edit mr-2"></i>Editar Post
+              </button>
+              <button class="w-full px-4 py-2 text-left hover:bg-gray-600 text-white">
+                <i class="bx bx-plus mr-2"></i>Criar Post
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Conteúdo Principal -->
-        <h1 class="text-3xl font-bold mb-6 text-white">
+        <h1 class="text-3xl font-bold mb-6 text-white" id="title">
           Comunicação entre Componentes no Angular: Guia Completo
         </h1>
         <div class="prose prose-invert max-w-none text-white">
-          <p class="mb-4">
+          <p class="mb-4" id="content">
             Dominar a comunicação entre componentes é essencial para construir
             aplicações Angular escaláveis. Vamos explorar:
           </p>
-
-          <h3 class="text-xl font-semibold mt-8">
-            1. Pai para Filho com @Input()
-          </h3>
-          <p class="mb-4">
-            Utilize
-            <code class="bg-gray-700 px-2 py-1 rounded">@Input()</code> para
-            passar dados diretamente via property binding:
-          </p>
-          <pre
-            class="bg-gray-700 p-4 rounded-lg mb-6"
-          ><code>&lt;app-filho [dados]="dadosPai"&gt;&lt;/app-filho&gt;</code></pre>
-
-          <h3 class="text-xl font-semibold">
-            2. Filho para Pai com EventEmitter
-          </h3>
-          <p class="mb-4">
-            Emita eventos usando
-            <code class="bg-gray-700 px-2 py-1 rounded">@Output()</code>:
-          </p>
-          <pre
-            class="bg-gray-700 p-4 rounded-lg mb-6"
-          ><code>@Output() evento = new EventEmitter&lt;string&gt;();</code></pre>
-
-          <h3 class="text-xl font-semibold">
-            3. Comunicação Global com Services
-          </h3>
-          <p>
-            Crie um serviço com Subject para comunicação entre quaisquer
-            componentes:
-          </p>
-          <pre
-            class="bg-gray-700 p-4 rounded-lg mt-4"
-          ><code>private mensagemSubject = new Subject&lt;string&gt;();
-  mensagem$ = this.mensagemSubject.asObservable();</code></pre>
-        </div>
-
-        <!-- Tags e Interações -->
-        <div class="mt-8 pt-6 border-t border-gray-700 text-white">
-          <div class="flex gap-2 mb-6">
-            <span class="px-3 py-1 bg-gray-700 rounded-full">Angular</span>
-            <span class="px-3 py-1 bg-gray-700 rounded-full">Frontend</span>
-            <span class="px-3 py-1 bg-gray-700 rounded-full">Padrões</span>
-          </div>
-          <div class="flex gap-6 text-gray-400">
-            <button class="hover:text-blue-400 flex items-center gap-2">
-              <i class="bx bx-like"></i> 245 Curtidas
-            </button>
-            <button class="hover:text-blue-400 flex items-center gap-2">
-              <i class="bx bx-share"></i> Compartilhar
-            </button>
-          </div>
-        </div>
       </div>
 
       <!-- Seção de Comentários -->
@@ -227,5 +191,89 @@
       </div>
     </footer>
   </body>
-  <script></script>
+  <script>
+    const id = localStorage.getItem('visualize_post');
+    const url = `http://localhost:8000/posts/get/${id}`;
+    let error_card = document.querySelector("#errorCard");
+    let error_message = document.querySelector("#errorMessage");
+
+
+    function getTimeSincePost(postDateTimeString) {
+      const now = new Date();
+      const postDate = new Date(postDateTimeString);
+
+      if (postDate > now) {
+        return { error: "Post date is in the future" };
+      }
+
+      const diffMs = now - postDate;
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const diffHours = Math.floor(
+        (diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const diffMinutes = Math.floor(
+        (diffMs % (1000 * 60 * 60)) / (1000 * 60)
+      );
+
+      return { diffDays, diffHours, diffMinutes };
+    }
+  
+    async function get_posts() {
+      try {
+        let response = await fetch(url, {
+          method: "GET",
+        });
+  
+        const result = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(result.detail || "Erro desconhecido!");
+        }
+
+        const {diffDays, diffHours, diffMinutes} = getTimeSincePost(
+            result.post_hour
+        )
+  
+        // Preenchendo apenas os elementos com IDs específicos
+        document.querySelector("#author").textContent = result.author_name || "Autor desconhecido";
+        document.querySelector("#time").textContent = `Há ${diffDays} dias, ${diffHours} horas e ${diffMinutes} minutos. ` || "Data desconhecida";
+        document.querySelector("#title").textContent = result.title || "Título não disponível";
+        document.querySelector("#content").textContent = result.content || "Conteúdo não disponível";
+      } catch (error) {
+        console.error(error);
+        error_message.textContent = error.message;
+        error_card.classList.remove("opacity-0", "translate-x-full");
+        error_card.classList.add("opacity-100", "translate-x-0");
+  
+        setTimeout(() => {
+          error_card.classList.remove("opacity-100", "translate-x-0");
+          error_card.classList.add("opacity-0", "translate-x-full");
+        }, 3000);
+      }
+    }
+  
+    // Chama a função ao carregar a página
+    document.addEventListener("DOMContentLoaded", () => {
+      get_posts()
+
+      const postMenuButton = document.getElementById('postMenuButton');
+      const postMenu = document.getElementById('postMenu');
+
+      // Alternar menu
+      postMenuButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        postMenu.classList.toggle('hidden');
+      });
+
+      // Fechar menu ao clicar fora
+      document.addEventListener('click', () => {
+        postMenu.classList.add('hidden');
+      });
+
+      // Prevenir fechamento ao clicar no menu
+      postMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+  </script>
 </html>

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Request
 from ..infra.db.session import get_session
 from ..schemas.posts import PostsCreate, PostsEdit
 from sqlalchemy.orm import Session
-from ..services.posts import create_post, list_posts, edit_post, delete_post
+from ..services.posts import create_post, list_posts, edit_post, delete_post, get_post_by_id
 from ..utils.users.check_current_user import check_current_user
 
 posts_router = APIRouter(
@@ -16,6 +16,12 @@ async def show(session: Session = Depends(get_session)):
     posts = list_posts(session)
 
     return posts
+
+@posts_router.get('/get/{post_id}')
+def get_post(post_id: int, session: Session = Depends(get_session)):
+    post = get_post_by_id(post_id, session)
+    
+    return post
 
 @posts_router.post('/create')
 async def create(post: PostsCreate, request: Request, session: Session = Depends(get_session)):

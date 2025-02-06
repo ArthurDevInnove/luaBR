@@ -17,9 +17,17 @@ def get_by_email(email: str, session: Session) -> UserModel:
             detail='Usuário não encontrado.'
             )
     return user
-    
 
-def get_by_password(password: str, session: Session):
+def get_by_id(id: int, session: Session) -> UserModel:
+    user = session.query(UserModel).filter(UserModel.id == id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail='Usuário não encontrado.'
+            )
+    return user
+
+def get_by_password(password: str, session: Session) -> UserModel:
     try:
         user = session.query(UserModel).filter(UserModel.password == password).first()
         if not user:
