@@ -1,9 +1,9 @@
 [project]
 name = "luabr"
 version = "0.1.0"
-description = "Este é um projeto feito por um brasileiro, Arthur Miranda, com o intuito de ajudar a comunidade brasileira de Lua/LuaU, unindo todos em um blog como o tabnews."
+description = ""
 authors = [
-    {name = "arthur",email = "arthur.o.f.miranda2011@gmail.com"}
+    {name = "arthur",email = ""}
 ]
 license = {text = "MIT"}
 readme = "README.md"
