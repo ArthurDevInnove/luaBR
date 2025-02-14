@@ -26,58 +26,8 @@
     </style>
   </head>
   <body>
-    <header
-      class="w-full bg-gray-900 text-white shadow-lg fixed top-0 left-0 z-50"
-    >
-      <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center gap-6">
-            <i class="bx bx-moon text-2xl text-blue-500"></i>
-            <span class="text-xl font-semibold">
-              lua<span class="text-blue-500">BR</span>
-            </span>
-
-            <nav class="hidden md:flex items-center gap-6 ml-6">
-              <a href="#" class="hover:text-blue-400 transition-colors"
-                >Página Principal</a
-              >
-              <a href="#" class="hover:text-blue-400 transition-colors"
-                >Relevantes</a
-              >
-            </nav>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <div class="relative">
-              <input
-                type="text"
-                placeholder="Pesquisar"
-                class="bg-gray-800 rounded-full py-2 px-4 w-48 focus:w-64 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-              />
-            </div>
-
-            <button
-              class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition-colors font-medium"
-            >
-              Cadastrar
-            </button>
-            <button
-              class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-colors font-medium"
-            >
-              Registrar
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div
-      id="errorCard"
-      class="fixed top-20 right-5 max-w-xs p-4 bg-red-500 text-white rounded-lg opacity-0 shadow-lg transform translate-x-full transition duration-500 ease-in-out"
-    >
-      <p class="font-semibold">Erro!</p>
-      <p id="errorMessage">An error occurred while processing your request.</p>
-    </div>
+    <div c-container="/src/frontend/html/components/header.html"></div>
+    <div c-container="/src/frontend/html/components/error_card.html"></div>
 
     <main class="pt-28 pb-12 container mx-auto px-4 max-w-3xl">
       <!-- Cabeçalho do Post -->
@@ -176,104 +126,9 @@
       </div>
     </main>
 
-    <footer class="bg-gray-900 text-white py-6">
-      <div class="container mx-auto px-4 text-center">
-        <p class="mb-2">&copy; 2025 LuaBR. Todos os direitos reservados.</p>
-        <div class="flex justify-center space-x-4">
-          <a href="#" class="hover:text-blue-400 transition-colors"
-            >Termos de Serviço</a
-          >
-          <a href="#" class="hover:text-blue-400 transition-colors"
-            >Política de Privacidade</a
-          >
-          <a href="#" class="hover:text-blue-400 transition-colors">Contato</a>
-        </div>
-      </div>
-    </footer>
+    <div c-container="/src/frontend/html/components/footer.html"></div>
   </body>
-  <script>
-    const id = localStorage.getItem('visualize_post');
-    const url = `http://localhost:8000/posts/get/${id}`;
-    let error_card = document.querySelector("#errorCard");
-    let error_message = document.querySelector("#errorMessage");
-
-
-    function getTimeSincePost(postDateTimeString) {
-      const now = new Date();
-      const postDate = new Date(postDateTimeString);
-
-      if (postDate > now) {
-        return { error: "Post date is in the future" };
-      }
-
-      const diffMs = now - postDate;
-      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-      const diffHours = Math.floor(
-        (diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const diffMinutes = Math.floor(
-        (diffMs % (1000 * 60 * 60)) / (1000 * 60)
-      );
-
-      return { diffDays, diffHours, diffMinutes };
-    }
-  
-    async function get_posts() {
-      try {
-        let response = await fetch(url, {
-          method: "GET",
-        });
-  
-        const result = await response.json();
-        
-        if (!response.ok) {
-          throw new Error(result.detail || "Erro desconhecido!");
-        }
-
-        const {diffDays, diffHours, diffMinutes} = getTimeSincePost(
-            result.post_hour
-        )
-  
-        // Preenchendo apenas os elementos com IDs específicos
-        document.querySelector("#author").textContent = result.author_name || "Autor desconhecido";
-        document.querySelector("#time").textContent = `Há ${diffDays} dias, ${diffHours} horas e ${diffMinutes} minutos. ` || "Data desconhecida";
-        document.querySelector("#title").textContent = result.title || "Título não disponível";
-        document.querySelector("#content").textContent = result.content || "Conteúdo não disponível";
-      } catch (error) {
-        console.error(error);
-        error_message.textContent = error.message;
-        error_card.classList.remove("opacity-0", "translate-x-full");
-        error_card.classList.add("opacity-100", "translate-x-0");
-  
-        setTimeout(() => {
-          error_card.classList.remove("opacity-100", "translate-x-0");
-          error_card.classList.add("opacity-0", "translate-x-full");
-        }, 3000);
-      }
-    }
-  
-    // Chama a função ao carregar a página
-    document.addEventListener("DOMContentLoaded", () => {
-      get_posts()
-
-      const postMenuButton = document.getElementById('postMenuButton');
-      const postMenu = document.getElementById('postMenu');
-
-      // Alternar menu
-      postMenuButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        postMenu.classList.toggle('hidden');
-      });
-
-      // Fechar menu ao clicar fora
-      document.addEventListener('click', () => {
-        postMenu.classList.add('hidden');
-      });
-
-      // Prevenir fechamento ao clicar no menu
-      postMenu.addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
-    });
-  </script>
+  <script src="/src/frontend/js/blog/visualize_post.js"></script>
+  <script src="/src/frontend/js/components/header.js" type="module"></script>
+  <script src="/src//frontend/js/extensions/cru.js"></script>
 </html>

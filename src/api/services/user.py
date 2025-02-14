@@ -7,8 +7,6 @@ from ..utils.security.hasher import hash_password, check_password
 from ..utils.security.token_manager import create_token
 from ..utils.cookies import set_cookie
 
-
-
 def get_by_email(email: str, session: Session) -> UserModel:
     user = session.query(UserModel).filter(UserModel.email == email).first() 
     if not user:
