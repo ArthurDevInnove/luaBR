@@ -27,7 +27,7 @@
       <div class="container mx-auto px-4">
         <h2 class="text-2xl font-bold mb-6">Publicar novo conteúdo</h2>
 
-        <form>
+        <form action="http://localhost:8000/posts/create" method="post">
           <!-- Campo Título -->
           <div class="mb-6">
             <label class="block text-lg font-medium mb-2" for="titulo"
@@ -77,6 +77,7 @@
           </div>
 
           <button
+            id="submitBtn"
             type="submit"
             class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full transition-colors font-medium"
           >
@@ -85,7 +86,7 @@
         </form>
       </div>
     </main>
-
+    <div c-container="/src/frontend/html/components/loading_overlay.html"></div>
     <div c-container="/src/frontend/html/components/footer.html"></div>
 
     <script>
@@ -141,5 +142,9 @@
     </script>
     <script src="/src/frontend/js/components/header.js" type="module"></script>
     <script src="/src//frontend/js/extensions/cru.js"></script>
+    <script
+      src="/src//frontend/js/blog/forms/create_post.js"
+      type="module"
+    ></script>
   </body>
 </html>

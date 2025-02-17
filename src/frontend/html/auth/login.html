@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro - LuaBR</title>
+    <title>Login - LuaBR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -47,27 +47,13 @@
         <h1
           class="text-blue-400 text-4xl text-left font-semibold text-center mb-6"
         >
-          Cadastro
+          Login
         </h1>
         <form
-          action="http://localhost:8000/auth/register"
+          action="http://localhost:8000/auth/login"
           method="post"
           class="space-y-6"
         >
-          <div>
-            <label
-              for="public_name"
-              class="block text-white text-sm font-semibold"
-              >Nome de usuário</label
-            >
-            <input
-              id="public_name"
-              type="text"
-              class="bg-gray-700 w-full px-4 py-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-              placeholder="nomepublico"
-            />
-          </div>
-
           <div>
             <label for="email" class="block text-white text-sm font-semibold"
               >E-mail</label
@@ -98,7 +84,7 @@
               type="submit"
               class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg font-semibold text-white transition-colors flex items-center justify-center"
             >
-              <span id="btnText">Criar Conta</span>
+              <span id="btnText">Login</span>
               <i
                 id="loadingIcon"
                 class="bx bx-loader-alt text-white ml-2 hidden spin"
@@ -112,7 +98,7 @@
     <div c-container="/src/frontend/html/components/loading_overlay.html"></div>
     <div c-container="/src/frontend/html/components/footer.html"></div>
 
-    <script src="/src/frontend/js/auth/register.js" type="module"></script>
+    <script src="/src/frontend/js/auth/login.js" type="module"></script>
     <script src="/src/frontend/js/components/header.js" type="module"></script>
     <script src="/src//frontend/js/extensions/cru.js"></script>
   </body>

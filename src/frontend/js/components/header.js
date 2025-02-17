@@ -31,6 +31,7 @@ function createAccountButtons() {
 }
 
 function onLoadDocument() {
+  console.log(document.cookie);
   const jwt_cookie = getCookie("token_jwt");
   console.log(jwt_cookie);
 

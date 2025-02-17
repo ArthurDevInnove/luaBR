@@ -22,14 +22,17 @@ def get_post_by_id(id: int, session: Session) -> PostsModel:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail='Houve um erro interno no servidor.'
         )
+    
+
 
 def create_post(post: PostsCreate, request: Request, session: Session) -> PostsModel:
     try:
-        token_cookie = get_cookies(request, 'token_jwt')
+        token_cookie = get_cookies(request, key='token_jwt')
+        print(request.cookies)
         if not token_cookie:
             raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail='O token de autentificação do usuário não foi encontrado.'
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail='Faça login para criar um post.'
             )
         
         

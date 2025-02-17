@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts - LuaBR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="../static/moon-solid-24 (2).png"
+      type="image/x-icon"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div c-container="/src/frontend/html/components/header.html"></div>
+    <div c-container="/src/frontend/html/components/error_card.html"></div>
+    <div class="min-h-screen flex items-center justify-center px-4">
+      <div class="max-w-lg w-full text-center">
+        <div class="text-purple-500 filter drop-shadow-xl mb-8">
+          <span class="text-9xl font-bold">404</span>
+        </div>
+
+        <h2 class="text-4xl font-bold text-white mb-4">Post Não Encontrado</h2>
+
+        <p class="text-gray-400 text-lg mb-8">
+          Ops! Parece que o post que você está procurando foi movido, deletado
+          ou nunca existiu. Que tal voltar para a página inicial e tentar
+          novamente?
+        </p>
+
+        <a
+          href="/"
+          class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-500 hover:bg-purple-600 transition-colors duration-200"
+        >
+          <i class="bx bx-arrow-back mr-2"></i>
+          Voltar para Home
+        </a>
+      </div>
+    </div>
+    <div c-container="/src/frontend/html/components/footer.html"></div>
+  </body>
+  <script src="/src/frontend/js/components/header.js" type="module"></script>
+  <script src="/src//frontend/js/extensions/cru.js"></script>
+</html>

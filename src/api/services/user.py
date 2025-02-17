@@ -5,7 +5,6 @@ from fastapi import HTTPException, status, Response
 from ..models.user import UserModel
 from ..utils.security.hasher import hash_password, check_password
 from ..utils.security.token_manager import create_token
-from ..utils.cookies import set_cookie
 
 def get_by_email(email: str, session: Session) -> UserModel:
     user = session.query(UserModel).filter(UserModel.email == email).first() 
@@ -72,7 +71,14 @@ def authenticate_user(user_login: UserLogin, session: Session, response: Respons
         )
     
     token = create_token(user.id)
-    set_cookie(
-        response, 'token_jwt', token
+    response.set_cookie(
+        key='token_jwt',
+        value=token,
+        max_age=1209600,
+        httponly=False,
+        secure=True,
+        samesite="None",
     )
+
+
     return user

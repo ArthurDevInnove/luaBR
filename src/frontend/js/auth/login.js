@@ -5,7 +5,7 @@ import {
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
-  const url = "http://localhost:8000/auth/register";
+  const url = "http://localhost:8000/auth/login";
   const submitBtn = document.getElementById("submitBtn");
   const btnText = document.getElementById("btnText");
   const loadingIcon = document.getElementById("loadingIcon");
@@ -16,14 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    let public_name = document.getElementById("public_name").value;
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
     const data = {
-      name: public_name,
-      password: password,
       email: email,
+      password: password,
     };
 
     const jsonData = JSON.stringify(data);
@@ -38,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "POST",
         headers: headers,
         body: jsonData,
+        credentials: "include",
       });
 
       const result = await response.json();
@@ -62,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadingIcon.classList.add("hidden");
 
       window.location.href =
-        "http://127.0.0.1:5500/src/frontend/html/auth/success_register.html";
+        "http://127.0.0.1:5500/src/frontend/html/blog/posts.html";
     } catch (error) {
       error_message.textContent = "Erro na conexão com o servidor";
       error_card.classList.remove("opacity-0", "translate-x-full");

@@ -1,14 +1,12 @@
 import {
   showLoadingOverlay,
   hideLoadingOverlay,
-} from "../components/overlay.js";
+} from "/src/frontend/js/components/overlay.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+function makePost() {
   const form = document.querySelector("form");
-  const url = "http://localhost:8000/auth/register";
+  const url = form.action;
   const submitBtn = document.getElementById("submitBtn");
-  const btnText = document.getElementById("btnText");
-  const loadingIcon = document.getElementById("loadingIcon");
 
   let error_card = document.querySelector("#errorCard");
   let error_message = document.querySelector("#errorMessage");
@@ -16,14 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    let public_name = document.getElementById("public_name").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+    let title = document.getElementById("titulo");
+    let content = document.getElementById("contentBody");
 
     const data = {
-      name: public_name,
-      password: password,
-      email: email,
+      title: title.value,
+      content: content.textContent,
     };
 
     const jsonData = JSON.stringify(data);
@@ -31,19 +27,20 @@ document.addEventListener("DOMContentLoaded", () => {
     headers.append("Content-Type", "application/json");
 
     submitBtn.disabled = true;
-    loadingIcon.classList.remove("hidden");
     showLoadingOverlay();
+    console.log(content.textContent);
+
     try {
-      let response = await fetch(url, {
+      const response = await fetch(url, {
         method: "POST",
         headers: headers,
         body: jsonData,
+        credentials: "include",
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        console.log(result);
         error_message.textContent = result.detail || "Erro desconhecido!";
 
         error_card.classList.remove("opacity-0", "translate-x-full");
@@ -58,11 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       submitBtn.disabled = false;
-      btnText.classList.remove("hidden");
-      loadingIcon.classList.add("hidden");
-
-      window.location.href =
-        "http://127.0.0.1:5500/src/frontend/html/auth/success_register.html";
+      console.log(result);
+      localStorage.setItem("visualize_post", result.id);
     } catch (error) {
       error_message.textContent = "Erro na conexão com o servidor";
       error_card.classList.remove("opacity-0", "translate-x-full");
@@ -75,7 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } finally {
       hideLoadingOverlay();
       submitBtn.disabled = false;
-      loadingIcon.classList.add("hidden");
     }
   });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  makePost();
 });
